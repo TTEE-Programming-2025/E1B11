@@ -38,9 +38,58 @@ int main()
             }
         }
     }
-    
-    
-    
+	
+    // 主選單
+    printf("輸入的密碼=2025 密碼正確 \n");
+    char choice;
+    while (1) 
+    {
+        printf("\n==== 主選單 ====\n");
+        printf("a. 倒直角字母三角形\n");
+        printf("b. 顯示乘法表\n");
+        printf("c. 結束\n");
+        printf("請選擇功能 (a/b/c)：");
+        scanf(" %c", &choice);
+
+        // 功能 a：直角字母三角形
+        if (choice == 'a') 
+        {
+            char end;
+            printf("請輸入一個字母(a-n)：");
+            scanf(" %c",&end);
+
+            if (end < 'a' || end > 'n') 
+            {
+                printf("輸入錯誤，請重新輸入。\n");
+                continue;
+            }
+
+            char row = end;
+            while (row >= 'a') 
+            {
+                char space = 'a';
+                while (space < row) 
+                {
+                    printf(" ");
+                    space++;
+                }
+
+                char ch = row;
+                while (ch <= end) 
+                {
+                    printf("%c", ch);
+                    ch++;
+                }
+
+                printf("\n");
+                row--;
+            }
+            printf("按下任何按鍵以回到主選單");
+            getch();
+            system("CLS");
+        }
+
+    } 
 
     return 0;
 }
