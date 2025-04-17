@@ -88,8 +88,37 @@ int main()
             getch();
             system("CLS");
         }
+		
+        // 功能 b：乘法表
+        else if (choice == 'b') 
+        {
+            int n;
+            printf("請輸入1到9之間的整數：");
+            scanf("%d", &n);
 
-    } 
+            if (n < 1 || n > 9) 
+            {
+                printf("輸入錯誤，請重新輸入。\n");
+                continue;
+            }
+
+            int i = 1;
+            while (i <= n) 
+            {
+                int j = 1;
+                while (j <= n) 
+                {
+                    printf("%d*%d=%2d ", i, j, i * j);
+                    j++;
+                }
+                printf("\n");
+                i++;
+            }
+        }
+            printf("按下任何按鍵以回到主選單");
+            getch();
+            system("CLS"); 
+    }
 
     return 0;
 }
