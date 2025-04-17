@@ -6,35 +6,35 @@ int main()
     int pass;
     int count = 0;
 
-    // 畫個人風格畫面
+    // 鐣�嬩汉棰ㄦ牸鐣潰
     for (int i = 0; i < 20; i++) 
     {
         printf("***********\n");
     }
 
-    // 密碼驗證
+    // 瀵嗙⒓椹楄瓑
     while (count < 3)
     {
-        printf("請輸入四位密碼：");
+        printf("璜嬭几鍏ュ洓浣嶅瘑纰硷細");
         scanf("%d", &pass);
 
         if (pass == 2025)
         {   
-		    printf("密碼正確");
+		    printf("瀵嗙⒓姝ｇ⒑");
 		    system("CLS");
             break;
         }
         else 
         {
             count++;
-            if (count = 3)
+            if (count == 3)
             {
-                printf("密碼錯誤三次，程式結束！\n");
+                printf("瀵嗙⒓閷涓夋锛岀▼寮忕祼鏉燂紒\n");
                 return 0;
             }
             else
             {
-                printf("密碼錯誤，請再試一次！\n");
+                printf("瀵嗙⒓閷锛岃珛鍐嶈│涓�娆★紒\n");
             }
         }
     }
