@@ -87,7 +87,30 @@ int main(){
         return 0;
     }
 
+    // Preset occupied seats
+    int preset[10][2] = {
+        {0,1}, {0,8}, {1,8}, {2,3}, {3,4},
+        {4,2}, {5,1}, {5,8}, {6,7}, {8,3}
+    };
+    for (i = 0; i < 10; i++) {
+        seats[preset[i][0]][preset[i][1]] = 1;
+    }
 
+    // Main menu loop
+    char sel;
+    while (1) {
+        printf("\n---------[Booking System]---------\n");
+        printf("a. View available seats\n");
+        printf("b. Auto arrange seats\n");
+        printf("c. Choose seats manually\n");
+        printf("d. Exit\n");
+        printf("----------------------------------\n");
+        printf("Please select an option: ");
+        scanf(" %c", &sel);
+
+        if (sel == 'a') {
+            showSeats();
+        }
 
 
 
