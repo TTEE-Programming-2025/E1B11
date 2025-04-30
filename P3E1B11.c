@@ -25,7 +25,7 @@ void showSeats() {
     }
 }
 
-// Find horizontal consecutive seats
+// Find consecutive seats
 int findRowSeats(int need, int temp[4][2]) {
     for (int i = 0; i < 9; i++) {
         for (int j = 0; j <= 9 - need; j++) {
@@ -60,8 +60,32 @@ int findBlockSeats(int temp[4][2]) {
     return 0;
 }
 
-int main{
+int main(){
+	
+    int i, j;
 
+    // Initialize all seats
+    for (i = 0; i < 9; i++)
+        for (j = 0; j < 9; j++)
+            seats[i][j] = 0;
+
+    // Password
+    int pass, ok = 0;
+    for (i = 0; i <=2; i++) {
+        printf("Please enter the password (Default: 2025): ");
+        scanf("%d", &pass);
+        if (pass == 2025) {
+            printf("Login successful!\n");
+            ok = 1;
+            break;
+        } else {
+            printf("Incorrect password!\n");
+        }
+    }
+    if (!ok) {
+        printf("Incorrect three times. Exiting program.\n");
+        return 0;
+    }
 
 
 
