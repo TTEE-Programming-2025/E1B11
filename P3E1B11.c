@@ -197,7 +197,24 @@ int main(){
             printf("Seats confirmed, returning to main menu.\n");
         }
 
+        else if (sel == 'd') {
+            char cont;
+            while (1) {
+                printf("Continue? (y/n): ");
+                scanf(" %c", &cont);
+                if (cont == 'y') break;
+                else if (cont == 'n') {
+                    printf("Thank you for using the system.\n");
+                    return 0;
+                } else {
+                    printf("Invalid input, please enter 'y' or 'n'.\n");
+                }
+            }
+        }
 
+        else {
+            printf("Invalid option, please try again.\n");
+        }
 
 
 
