@@ -77,6 +77,7 @@ int main(){
         if (pass == 2025) {
             printf("Login successful!\n");
             ok = 1;
+	    system("CLS");
             break;
         } else {
             printf("Incorrect password!\n");
@@ -133,9 +134,7 @@ int main(){
 
 
 
-
-
-
+}
 
 return 0;
 
