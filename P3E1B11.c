@@ -113,8 +113,89 @@ int main(){
             showSeats();
         }
 
+        else if (sel == 'b') {
+            int need, found = 0;
+            int temp[4][2];
+            clearSeats();
 
+            printf("How many seats do you need (1~4)? ");
+            scanf("%d", &need);
 
+            if (need >= 1 && need <= 3) {
+                found = findRowSeats(need, temp);
+            } else if (need == 4) {
+                found = findRowSeats(4, temp);
+                if (!found) found = findBlockSeats(temp);
+            }
+
+            if (found) {
+                for (i = 0; i < need; i++) {
+                    seats[temp[i][0]][temp[i][1]] = 2;
+                }
+                printf("Suggested seats (@):\n");
+                showSeats();
+                char ans;
+                printf("Are you satisfied with these seats? (y/n): ");
+                scanf(" %c", &ans);
+                if (ans == 'y') {
+                    for (i = 0; i < need; i++)
+                        seats[temp[i][0]][temp[i][1]] = 1;
+                    printf("Seats confirmed, returning to main menu.\n");
+                } else {
+                    clearSeats();
+                    printf("Suggestion canceled, returning to main menu.\n");
+                }
+            } else {
+                printf("No suitable seats found.\n");
+            }
+        }
+
+	else if (sel == 'c') {
+            int r, c, num, count = 0;
+            int temp[4][2];
+            clearSeats();
+
+            printf("How many seats do you want to choose (1~4)? ");
+            scanf("%d", &num);
+            if (num < 1 || num > 4) {
+                printf("Invalid number of seats.\n");
+                continue;
+            }
+
+            for (i = 0; i < num; i++) {
+                while (1) {
+                    printf("Enter seat %d (format Row-Column, example 2-9): ", i + 1);
+                    scanf("%d-%d", &r, &c);
+                    int row = 9 - r;
+                    int col = c - 1;
+                    if (row >= 0 && row < 9 && col >= 0 && col < 9) {
+                        if (seats[row][col] == 0) {
+                            seats[row][col] = 2;
+                            temp[count][0] = row;
+                            temp[count][1] = col;
+                            count++;
+                            break;
+                        } else {
+                            printf("Seat already taken, please choose another.\n");
+                        }
+                    } else {
+                        printf("Invalid input, please try again.\n");
+                    }
+                }
+            }
+
+            printf("Suggested seats (@):\n");
+            showSeats();
+            printf("Press Enter to confirm...");
+            getchar(); // Clear previous newline
+            getchar(); // Wait for Enter
+
+            for (i = 0; i < count; i++) {
+                seats[temp[i][0]][temp[i][1]] = 1;
+            }
+
+            printf("Seats confirmed, returning to main menu.\n");
+        }
 
 
 
