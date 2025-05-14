@@ -75,34 +75,35 @@ int main() {
                 scanf(" %c", &confirm);
                 clearBuffer();
                if (confirm == 'y' || confirm == 'Y')
-				{
-				return 0;
+		{
+		return 0;
                 break;
                 }
                 
                 else if (confirm == 'N' || confirm == 'n')
                 {
-                	continue;
-				}
+                continue;
+		}
 				
-	   			else 
-				{
-				    printf("確定離開?(y/n):");
-                    scanf(" %c", &confirm);
-                    clearBuffer();
+	   	else 
+		{
+		printf("確定離開?(y/n):");
+                scanf(" %c", &confirm);
+                clearBuffer();
                     if (confirm == 'y' || confirm == 'Y')
-				    {
-			 	    return 0;
-                    break;
-                    }
+			 {
+			  return 0;
+                          break;
+                         }
                 
                     else if (confirm == 'N' || confirm == 'n')
                     {
-                	    continue;
-				    }      
+                	 continue;
+		    }     
+			    
                     else
                     {
-  printf("無效選項，請重新輸入。\n"); break;
+                    printf("無效選項，請重新輸入。\n"); break;
                     }
                          
                  }
@@ -111,4 +112,71 @@ int main() {
     }
 }
     
+}
+
+// 清除螢幕
+void clearScreen() {
+    system("cls"); 
+}
+
+// 清除輸入緩衝區
+void clearBuffer() {
+    while (getchar() != '\n');
+}
+
+// 檢查學號是否為 6 位數字
+int validID(char id[]) {
+    if (strlen(id) != 6) return 0;
+    for (int i = 0; i < 6; i++) {
+        if (id[i] < '0' || id[i] > '9') return 0;
+    }
+    return 1;
+}
+
+// a. 輸入學生資料
+void inputStudents() {
+    clearScreen();
+    printf("請輸入學生人數（5~10）：");
+    scanf("%d", &n);
+    clearBuffer();
+    if (n < 5 || n > 10) {
+        printf("人數不符規定。\n");
+        waitAndClear();
+        return;
+    }
+
+    for (int i = 0; i < n; i++) {
+        printf("\n第 %d 位學生：\n", i + 1);
+
+        printf("姓名：");
+        scanf("%19s", students[i].name);
+        clearBuffer();
+
+        while (1) {
+            printf("學號（6位數）：");
+            scanf("%9s", students[i].id);
+            clearBuffer();
+            if (validID(students[i].id)) break;
+            else printf("學號格式錯誤，請重新輸入。\n");
+        }
+
+        printf("數學成績：");
+        scanf("%d", &students[i].math);
+        printf("物理成績：");
+        scanf("%d", &students[i].physics);
+        printf("英文成績：");
+        scanf("%d", &students[i].english);
+        clearBuffer();
+
+        if (students[i].math < 0 || students[i].math > 100 ||
+            students[i].physics < 0 || students[i].physics > 100 ||
+            students[i].english < 0 || students[i].english > 100) {
+            printf("成績輸入錯誤，請重新輸入該生資料。\n");
+            i--;
+            continue;
+        }
+
+        students[i].average = (students[i].math + students[i].physics + students[i].english) / 3.0f;
+    }
+    waitAndClear();
 }
