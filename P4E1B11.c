@@ -180,3 +180,50 @@ void inputStudents() {
     }
     waitAndClear();
 }
+
+// b. 顯示學生資料
+void displayStudents() {
+    clearScreen();
+    printf("\n%-10s %-10s %-6s %-6s %-6s %-6s\n", "姓名", "學號", "數學", "物理", "英文", "平均");
+    for (int i = 0; i < n; i++) {
+        printf("%-10s %-10s %-6d %-6d %-6d %-6.1f\n",
+               students[i].name,
+               students[i].id,
+               students[i].math,
+               students[i].physics,
+               students[i].english,
+               students[i].average);
+    }
+    waitAndClear();
+}
+
+// c. 搜尋特定學生
+void searchStudent() {
+    clearScreen();
+    char search[20];
+    int found = 0;
+
+    printf("請輸入要搜尋的姓名：");
+    scanf("%19s", search);
+    clearBuffer();
+
+    for (int i = 0; i < n; i++) {
+        if (strcmp(search, students[i].name) == 0) {
+            printf("學號：%s\n數學：%d\n物理：%d\n英文：%d\n平均：%.1f\n",
+                   students[i].id,
+                   students[i].math,
+                   students[i].physics,
+                   students[i].english,
+                   students[i].average);
+            found = 1;
+            break;
+        }
+    }
+
+    if (!found) {
+        printf("找不到該學生。\n");
+    }
+
+    waitAndClear();
+}
+
