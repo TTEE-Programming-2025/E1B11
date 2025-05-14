@@ -227,3 +227,38 @@ void searchStudent() {
     waitAndClear();
 }
 
+// d. 成績排名
+void rankStudents() {
+    clearScreen();
+    Student temp[MAX];
+    for (int i = 0; i < n; i++) {
+        temp[i] = students[i];
+    }
+
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (temp[i].average < temp[j].average) {
+                Student t = temp[i];
+                temp[i] = temp[j];
+                temp[j] = t;
+            }
+        }
+    }
+
+    printf("\n%-10s %-10s %-6s\n", "姓名", "學號", "平均");
+    for (int i = 0; i < n; i++) {
+        printf("%-10s %-10s %-6.1f\n",
+               temp[i].name,
+               temp[i].id,
+               temp[i].average);
+    }
+    waitAndClear();
+}
+
+// 等待使用者按鍵並清除螢幕
+void waitAndClear() {
+    printf("\n按下 Enter 鍵繼續...");
+    getchar();
+    clearScreen();
+}
+		
